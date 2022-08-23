@@ -6,25 +6,29 @@ Simple Book API. Using monitoring and health checks.
 <ul>
     <li>VS 2022 (optional)</li>
     <li>.NET Core 6.0</li>
+    <li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019](https://prometheus.io/)" target="_blank">Prometheus</a></li>
+    <li><a href="[https://www.microsoft.com/en-us/sql-server/sql-server-2019](https://grafana.com/)" target="_blank">Grafana Dashboard</a></li>
+    <li><a href="[https://www.microsoft.com/en-us/sql-server/sql-server-2019](https://sentry.io/onboarding/jose-matoso/setup-docs/?sub_step=project&project_id=6680024)" target="_blank">Sentry</a></li>
     <li>Microsoft Entity Framework Core</li>
-    <li> <a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" target="_blank">Microsoft SQL Server</a></li>
+    <li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" target="_blank">Microsoft SQL Server</a></li>
 </ul>
 
 <h3>How to run</h3>
 <ol>
     <li>Restore all packages</li>
     <li>Change the ConnectionString in <i>appsettings.json</i></li>
+    <li>Change Sentry configurations in <i>appsettings.json</i></li>
     <li>Apply migrations <code>Add-Migration {migration name}</code></li>
     <li>Apply migrations changes <code>Update-Database</code></li>
 </ol>
 
-Prometheus in <code>prometheus.yml</code> add the following line:
+Configure prometheus in <code>prometheus.yml</code> adding the following lines:
 
 ```yml
 - job_name: 'bookingapi' </code>
   static_configs: </code>
-    - targets: ["localhost:7197"] </code>
+    - targets: ["<host>:<port>"] </code>
   metrics_path: "/metrics-text" </code>
-  scheme: "https"</code>
+  scheme: "<http><https>"</code>
   ```
 
