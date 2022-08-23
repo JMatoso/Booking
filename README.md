@@ -4,7 +4,7 @@ Simple Book API. Using monitoring, health checks and error tracking.
 
 <h3>Tools</h3>
 <ul>
-    <li>VS 2022 (optional)</li>
+    <li>VS2022 (optional)</li>
     <li>.NET Core 6.0</li>
     <li><a href="https://prometheus.io/" target="_blank">Prometheus</a></li>
     <li><a href="https://grafana.com/" target="_blank">Grafana Dashboard</a></li>
