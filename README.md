@@ -20,9 +20,9 @@ Simple Book API. Using monitoring and health checks.
 
 Prometheus in <code>prometheus.yml</code> add the following line:
 
-<code>- job_name: 'bookingapi'
-  static_configs:
-    - targets: ["localhost:7197"]
-  metrics_path: "/metrics-text"
-  scheme: "https"</code>
+<code>- job_name: 'bookingapi' <br>
+  static_configs:<br>
+    - targets: ["localhost:7197"]<br>
+  metrics_path: "/metrics-text"<br>
+  scheme: "https"</code><br>
 
