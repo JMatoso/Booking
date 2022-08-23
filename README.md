@@ -6,9 +6,9 @@ Simple Book API. Using monitoring and health checks.
 <ul>
     <li>VS 2022 (optional)</li>
     <li>.NET Core 6.0</li>
-    <li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019](https://prometheus.io/)" target="_blank">Prometheus</a></li>
-    <li><a href="[https://www.microsoft.com/en-us/sql-server/sql-server-2019](https://grafana.com/)" target="_blank">Grafana Dashboard</a></li>
-    <li><a href="[https://www.microsoft.com/en-us/sql-server/sql-server-2019](https://sentry.io/onboarding/jose-matoso/setup-docs/?sub_step=project&project_id=6680024)" target="_blank">Sentry</a></li>
+    <li><a href="https://prometheus.io/" target="_blank">Prometheus</a></li>
+    <li><a href="https://grafana.com/" target="_blank">Grafana Dashboard</a></li>
+    <li><a href="https://sentry.io/" target="_blank">Sentry</a></li>
     <li>Microsoft Entity Framework Core</li>
     <li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019" target="_blank">Microsoft SQL Server</a></li>
 </ul>
