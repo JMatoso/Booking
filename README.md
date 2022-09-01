@@ -27,12 +27,14 @@ Simple Book API. Using monitoring, health checks and error tracking.
 Configure prometheus in <code>prometheus.yml</code> adding the following lines:
 
 ```yml
-- job_name: 'bookingapi' </code>
-  static_configs: </code>
-    - targets: ["<host>:<port>"] </code>
-  metrics_path: "/metrics-text" </code>
-  scheme: "<http><https>"</code>
+- job_name: 'bookingapi' 
+  static_configs: 
+    - targets: ["<host>:<port>"] 
+  metrics_path: "/metrics-text" 
+  scheme: "<http><https>"
   ```
+
+<br/>
 
 ![Grafana Dashboard Image](https://github.com/JMatoso/Booking/blob/25acc391d9f535bdf2a7b33ff35a80b16118bc93/project-files/dashboard.png?raw=true)
 
