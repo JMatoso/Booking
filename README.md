@@ -36,4 +36,4 @@ Configure prometheus in <code>prometheus.yml</code> adding the following lines:
 
 ![Grafana Dashboard Image](https://github.com/JMatoso/Booking/blob/25acc391d9f535bdf2a7b33ff35a80b16118bc93/project-files/dashboard.png?raw=true)
 
-Grafana Dashboard in <code>project-files</code> folder.
+Grafana Dashboard in <code>a href="https://github.com/JMatoso/Booking/blob/8b57188b40c8a1dbde3c9fff77ef3c1a78d0701e/project-files/booking-dashboard.json">project-files</a></code> folder.
