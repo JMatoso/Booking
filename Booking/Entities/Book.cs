@@ -15,7 +15,7 @@ namespace Booking.Entities
         public string Title { get; set; }
 
         [Required, Range(1800, int.MaxValue)]
-        public string Year { get; set; }
+        public int Year { get; set; }
         public string Genre { get; set; }
 
         [Required, StringLength(100)]
