@@ -5,7 +5,7 @@
     public class SentryOptions
     {
         public string Dsn { get; set; }
-        public float TracesSampleRate { get; set; }
+        public double TracesSampleRate { get; set; }
         public Sentry.Extensibility.RequestSize MaxRequestBodySize { get; set; }
         public bool SendDefaultPii { get; set; }
         public LogLevel MinimumBreadcrumbLevel { get; set; }

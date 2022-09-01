@@ -115,7 +115,7 @@ namespace Booking.Controllers
 
             if(book is null)
             {
-                return NotFound("Book not found.");
+                return NotFound(ActionReporterProvider.Set("Book not found.", StatusCodes.Status404NotFound));
             }
 
             book.Title = bookModel.Title;
@@ -140,7 +140,7 @@ namespace Booking.Controllers
         {
             if (bookId < 1)
             {
-                return BadRequest("Invalid id.");
+                return BadRequest(ActionReporterProvider.Set("Invalid id.", StatusCodes.Status400BadRequest));
             }
 
             await _books.Delete(bookId);

@@ -24,10 +24,11 @@ builder.WebHost.UseSentry(options =>
     options.Debug = sentryOptions.Debug;
     options.TracesSampleRate = sentryOptions.TracesSampleRate;
     options.Dsn = sentryOptions.Dsn;
+
     options.MaxRequestBodySize = sentryOptions.MaxRequestBodySize;
     options.SendDefaultPii = sentryOptions.SendDefaultPii;
     options.MinimumBreadcrumbLevel = sentryOptions.MinimumBreadcrumbLevel;
-    options.MinimumEventLevel = sentryOptions.MinimumEventLevel;
+    options.MinimumEventLevel = sentryOptions.MinimumEventLevel; 
     options.DiagnosticLevel = sentryOptions.DiagnosticsLevel;
     options.AttachStacktrace = sentryOptions.AttachStackTrace;
 
