@@ -129,6 +129,13 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseCors(opt => {
+    opt.AllowAnyHeader();
+    opt.AllowAnyHeader();
+    opt.SetIsOriginAllowed((host) => true);
+    opt.AllowCredentials();
+});
+
 app.MapControllers();
 
 app.Run();
