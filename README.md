@@ -1,6 +1,6 @@
 # Booking API
 
-Simple Book API. Using monitoring, health checks and error tracking.
+Simple Book API. Using monitoring, logs, health checks and error tracking.
 
 <h3>Tools</h3>
 <ul>
