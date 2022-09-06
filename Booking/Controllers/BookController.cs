@@ -94,7 +94,7 @@ namespace Booking.Controllers
 
             await _books.Add(book);
 
-            return Created($"/book/{book.Id}", book);
+            return CreatedAtAction(nameof(GetBook), new { bookId = book.Id }, book);
         }
 
         /// <summary>
