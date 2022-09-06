@@ -154,7 +154,8 @@ namespace Booking.Controllers
             return NoContent();
         }
 
-        [HttpGet("sentry-test")]
+
+        [HttpGet("/sentry-test")]
         public IActionResult SentryTest()
         {
             var childSpan = _sentryHub.GetSpan()?.StartChild("additional-work");
@@ -179,7 +180,7 @@ namespace Booking.Controllers
             }
         }
 
-        [HttpGet("exception")]
+        [HttpGet("/exception")]
         public IActionResult Exception()
         {
             var childSpan = _sentryHub.GetSpan()?.StartChild("exception-test");
