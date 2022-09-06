@@ -34,7 +34,7 @@ namespace Booking.Repository
                 .ToListAsync();
         }
 
-        public async Task<Book?> Get(int bookId)
+        public async Task<Book?> Get(Guid bookId)
         {
             return await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == bookId);
         }
@@ -55,7 +55,7 @@ namespace Booking.Repository
             _metrics.Measure.Counter.Increment(MetricRegistry.UpdatedBooksCounter);
         }
 
-        public async Task Delete(int bookId)
+        public async Task Delete(Guid bookId)
         {
             var book = await Get(bookId);
 

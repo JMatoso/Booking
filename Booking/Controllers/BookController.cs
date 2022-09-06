@@ -42,11 +42,11 @@ namespace Booking.Controllers
         [HttpGet("browse")]
         [ProducesResponseType(typeof(List<Book>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks(string search)
+        public async Task<ActionResult<IEnumerable<Book>>> GetBooks([FromQuery]string search)
         {
             if(string.IsNullOrEmpty(search))
             {
-                return BadRequest("Empty search is not allowed.");
+                return BadRequest(ActionReporterProvider.Set("Empty search is not allowed.", StatusCodes.Status400BadRequest));
             }
 
             return Ok(await _books.Get(search));
@@ -55,14 +55,14 @@ namespace Booking.Controllers
         /// <summary>
         /// Get a book.
         /// </summary>
-        [HttpGet("{bookId:int}")]
+        [HttpGet("{bookId:Guid}")]
         [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Book>> GetBook(int bookId)
+        public async Task<ActionResult<Book>> GetBook(Guid bookId)
         {
-            if (bookId < 1)
+            if (Guid.Empty == bookId)
             {
-                return BadRequest("Invalid id.");
+                return BadRequest(ActionReporterProvider.Set("Invalid book id.", StatusCodes.Status400BadRequest));
             }
 
             var book = await _books.Get(bookId);
@@ -100,11 +100,11 @@ namespace Booking.Controllers
         /// <summary>
         /// Update a book.
         /// </summary>
-        [HttpPut("{bookId:int}")]
+        [HttpPut("{bookId:Guid}")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateBook(int bookId, [FromBody] BookVM bookModel)
+        public async Task<IActionResult> UpdateBook(Guid bookId, [FromBody] BookVM bookModel)
         {
             if (!ModelState.IsValid)
             {
@@ -132,15 +132,15 @@ namespace Booking.Controllers
         /// <summary>
         /// Delete a book.
         /// </summary>
-        [HttpDelete("{bookId:int}")]
+        [HttpDelete("{bookId:Guid}")]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
 
-        public async Task<IActionResult> DeleteBook(int bookId)
+        public async Task<IActionResult> DeleteBook(Guid bookId)
         {
-            if (bookId < 1)
+            if (Guid.Empty == bookId)
             {
-                return BadRequest(ActionReporterProvider.Set("Invalid id.", StatusCodes.Status400BadRequest));
+                return BadRequest(ActionReporterProvider.Set("Invalid book id.", StatusCodes.Status400BadRequest));
             }
 
             await _books.Delete(bookId);

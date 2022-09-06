@@ -5,9 +5,9 @@ namespace Booking.Repository
     public interface IBookRepository
     {
         Task Add(Book book);
-        Task Delete(int bookId);
+        Task Delete(Guid bookId);
         Task<IEnumerable<Book>> Get();
-        Task<Book?> Get(int bookId);
+        Task<Book?> Get(Guid bookId);
         Task<IEnumerable<Book>> Get(string keyword);
         Task Update(Book book);
     }
