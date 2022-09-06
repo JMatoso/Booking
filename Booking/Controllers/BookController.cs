@@ -43,6 +43,7 @@ namespace Booking.Controllers
         /// <summary>
         /// Search for books.
         /// </summary>
+        /// <param name="search">Search keyword.</param>
         [HttpGet("browse")]
         [ProducesResponseType(typeof(List<BookVM>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
@@ -59,6 +60,7 @@ namespace Booking.Controllers
         /// <summary>
         /// Get a book.
         /// </summary>
+        /// <param name="bookId">Book's id.</param>
         [HttpGet("{bookId:Guid}")]
         [ProducesResponseType(typeof(BookVM), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status404NotFound)]
@@ -106,6 +108,7 @@ namespace Booking.Controllers
         /// <summary>
         /// Update a book.
         /// </summary>
+        /// <param name="bookId">Book's id.</param>
         [HttpPut("{bookId:Guid}")]
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status404NotFound)]
@@ -138,6 +141,7 @@ namespace Booking.Controllers
         /// <summary>
         /// Delete a book.
         /// </summary>
+        /// <param name="bookId">Book's id.</param>
         [HttpDelete("{bookId:Guid}")]
         [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
