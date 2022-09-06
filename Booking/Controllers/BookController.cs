@@ -41,7 +41,7 @@ namespace Booking.Controllers
         }
 
         /// <summary>
-        /// Search for a book.
+        /// Search for books.
         /// </summary>
         [HttpGet("browse")]
         [ProducesResponseType(typeof(List<BookVM>), StatusCodes.Status200OK)]
