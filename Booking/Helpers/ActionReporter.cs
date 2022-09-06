@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Booking.Models
+namespace Booking.Helpers
 {
     public class ActionReporter
     {

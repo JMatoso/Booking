@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Booking.Models;
+using Booking.Helpers;
 
 namespace Booking.Extensions
 {

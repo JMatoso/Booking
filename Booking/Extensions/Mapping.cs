@@ -9,6 +9,7 @@ namespace Booking.Extensions
         public Mapping()
         {
             CreateMap<Book, BookVM>().ReverseMap();
+            CreateMap<Book, BookRequest>().ReverseMap();
         }
     }
 }

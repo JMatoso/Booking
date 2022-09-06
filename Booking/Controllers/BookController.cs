@@ -1,5 +1,7 @@
-﻿using Booking.Entities;
+﻿using AutoMapper;
+using Booking.Entities;
 using Booking.Extensions;
+using Booking.Helpers;
 using Booking.Models;
 using Booking.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +20,13 @@ namespace Booking.Controllers
     public class BookController : ControllerBase
     {
         private readonly IHub _sentryHub;
+        private readonly IMapper _mapper;
         private readonly IBookRepository _books;
 
-        public BookController(IBookRepository books, IHub sentryHub)
+        public BookController(IBookRepository books, IHub sentryHub, IMapper mapper)
         {
             _books = books;
+            _mapper = mapper;
             _sentryHub = sentryHub;
         }
 
@@ -30,35 +34,35 @@ namespace Booking.Controllers
         /// List all books.
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(List<Book>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        [ProducesResponseType(typeof(List<BookVM>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<BookVM>>> GetBooks()
         {
-            return Ok(await _books.Get());
+            return Ok(_mapper.Map<List<BookVM>>(await _books.Get()));
         }
 
         /// <summary>
         /// Search for a book.
         /// </summary>
         [HttpGet("browse")]
-        [ProducesResponseType(typeof(List<Book>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<BookVM>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks([FromQuery]string search)
+        public async Task<ActionResult<IEnumerable<BookVM>>> GetBooks([FromQuery]string search)
         {
             if(string.IsNullOrEmpty(search))
             {
                 return BadRequest(ActionReporterProvider.Set("Empty search is not allowed.", StatusCodes.Status400BadRequest));
             }
 
-            return Ok(await _books.Get(search));
+            return Ok(_mapper.Map<List<BookVM>>(await _books.Get(search)));
         }
 
         /// <summary>
         /// Get a book.
         /// </summary>
         [HttpGet("{bookId:Guid}")]
-        [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(BookVM), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Book>> GetBook(Guid bookId)
+        public async Task<ActionResult<BookVM>> GetBook(Guid bookId)
         {
             if (Guid.Empty == bookId)
             {
@@ -67,16 +71,18 @@ namespace Booking.Controllers
 
             var book = await _books.Get(bookId);
 
-            return book is null ? NotFound(ActionReporterProvider.Set("Book not found.", StatusCodes.Status404NotFound)) : Ok(book);
+            return book is null ? 
+                NotFound(ActionReporterProvider.Set("Book not found.", StatusCodes.Status404NotFound)) : 
+                Ok(_mapper.Map<BookVM>(book));
         }
 
         /// <summary>
         /// Add a book.
         /// </summary>
         [HttpPost]
-        [ProducesResponseType(typeof(Book), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(BookVM), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddBook([FromBody]BookVM bookModel)
+        public async Task<IActionResult> AddBook([FromBody]BookRequest newBook)
         {
             if (!ModelState.IsValid)
             {
@@ -85,16 +91,16 @@ namespace Booking.Controllers
 
             var book = new Book()
             {
-                Title = bookModel.Title,
-                Author = bookModel.Author,
-                Year = bookModel.Year,
-                Editor = bookModel.Editor,
-                Genre = bookModel.Genre
+                Title = newBook.Title,
+                Author = newBook.Author,
+                Year = newBook.Year,
+                Editor = newBook.Editor,
+                Genre = newBook.Genre
             };
 
             await _books.Add(book);
 
-            return CreatedAtAction(nameof(GetBook), new { bookId = book.Id }, book);
+            return CreatedAtAction(nameof(GetBook), new { bookId = book.Id }, _mapper.Map<BookVM>(book));
         }
 
         /// <summary>
@@ -104,7 +110,7 @@ namespace Booking.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ActionReporter), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateBook(Guid bookId, [FromBody] BookVM bookModel)
+        public async Task<IActionResult> UpdateBook(Guid bookId, [FromBody] BookRequest updatedBook)
         {
             if (!ModelState.IsValid)
             {
@@ -118,11 +124,11 @@ namespace Booking.Controllers
                 return NotFound(ActionReporterProvider.Set("Book not found.", StatusCodes.Status404NotFound));
             }
 
-            book.Title = bookModel.Title;
-            book.Author = bookModel.Author;
-            book.Year = bookModel.Year;
-            book.Genre = bookModel.Genre;
-            book.Editor = bookModel.Editor;
+            book.Title = updatedBook.Title;
+            book.Author = updatedBook.Author;
+            book.Year = updatedBook.Year;
+            book.Genre = updatedBook.Genre;
+            book.Editor = updatedBook.Editor;
 
             await _books.Update(book);
 

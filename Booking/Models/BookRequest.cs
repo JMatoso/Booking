@@ -1,14 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Booking.Entities
+namespace Booking.Models
 {
-    [Table("Books")]
-    public class Book
+    public class BookRequest
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Required, StringLength(100)]
         public string Title { get; set; } = default!;
 
@@ -21,13 +16,5 @@ namespace Booking.Entities
 
         [Required, StringLength(100)]
         public string Editor { get; set; } = default!;
-
-        [DataType(DataType.DateTime)]
-        public DateTime Created { get; set; }
-
-        public Book()
-        {
-            Created = DateTime.Now;
-        }
     }
 }
