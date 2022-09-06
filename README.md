@@ -34,6 +34,6 @@ Configure prometheus in <code>prometheus.yml</code> adding the following lines:
   scheme: "<http><https>"
   ```
 
-![Grafana Dashboard Image](https://github.com/JMatoso/Booking/blob/25acc391d9f535bdf2a7b33ff35a80b16118bc93/project-files/dashboard.png?raw=true)
+![Grafana Dashboard Image](https://github.com/JMatoso/Booking/blob/30309a820b193fad06d0e51900531bd7e476b161/project-files/dashboard-print.png?raw=true)
 
 Grafana Dashboard in <a href="https://github.com/JMatoso/Booking/blob/8b57188b40c8a1dbde3c9fff77ef3c1a78d0701e/project-files/booking-dashboard.json"><code>project-files</code></a> folder.
