@@ -116,7 +116,7 @@ namespace Booking.Controllers
             {
                 return BadRequest();
             }
-
+             
             var book = await _books.Get(bookId);
 
             if(book is null)
