@@ -6,7 +6,7 @@ Simple Book API. Using monitoring, logs, health checks and error tracking.
 <ul>
     <li>VS2022 (optional)</li>
     <li>.NET Core 6.0</li>
-    <li>Serilog</li>
+    <li><a href="https://serilog.net/" target="_blank">Serilog</a></li>
     <liSwagger UI</li>
     <li><a href="https://prometheus.io/" target="_blank">Prometheus</a></li>
     <li><a href="https://grafana.com/" target="_blank">Grafana Dashboard</a></li>
